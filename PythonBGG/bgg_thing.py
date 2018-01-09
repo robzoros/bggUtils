@@ -57,10 +57,8 @@ def get_game(id):
               num_votes_ld = votes_poll
               language_dependence = r.get('value')
   
-    return (id, minplayers.get('value'), maxplayers.get('value'), 
-            minplaytime.get('value'), maxplaytime.get('value'),
-            minage.get('value'), nombre,
-            suggested_players, language_dependence)
+    return (id, nombre, minplayers.get('value'), maxplayers.get('value'), suggested_players,
+            minplaytime.get('value'), maxplaytime.get('value'), minage.get('value'), language_dependence)
   except AttributeError as err:
     print "Unexpected error:", err
     print "game: " + id
@@ -69,7 +67,7 @@ def get_game(id):
 
 
 def main(argv):
-  global file_in
+  global file_in  
   global file_out
   # Validamos entrada
   try:
@@ -94,6 +92,8 @@ def main(argv):
     games = f.readlines()
     
   with open(file_out, 'w') as fp:
+    header = "ID,Nombre,Min Jugadores,Max Jugadores,Jugadores Recomendados,Min Duración,Max Duración,Edad Minima,Independencia Idioma" + '\n'
+    fp.write(header)
     for game in games:
       tupla = get_game(game.rstrip())
       print tupla
