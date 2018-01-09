@@ -1,11 +1,11 @@
 *.class
 *.log
-/.idea
+**/.idea
 Readme
 *.csv
 *.xml
 *.txt
 *.json
-/spark-warehouse
-/target
-/project
+**/spark-warehouse
+**/target
+**/project
